@@ -1,24 +1,8 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a minimal reproduction of the behavior reported in [this turbo issue](https://github.com/hotwired/turbo/issues/894)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* bundle install
+* start up rails with `bin/rails s`
+* Navigate to `localhost:3000/test`
+* The page includes steps to reproduce and observe
