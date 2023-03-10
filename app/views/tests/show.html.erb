@@ -10,12 +10,12 @@
   7. observe form control out of sync
 </pre>
 
-<%= turbo_frame_tag :text_test do %>
-  <%= form_with(url: test_path, method: :get, data: { turbo_action: :advance, turbo_frame: :text_test, controller: "form" }) do |f| %>
-    <%= f.label :text_test %>
-    <%= f.text_field :text_test, value: params[:text_test] %>
-  <% end %>
+<%= form_with(url: test_path, method: :get, data: { turbo_action: :advance, turbo_frame: :text_test, controller: "form" }) do |f| %>
+  <%= f.label :text_test %>
+  <%= f.text_field :text_test, value: params[:text_test] %>
+<% end %>
 
+<%= turbo_frame_tag :text_test do %>
   <p>
     Text test is <%= params[:text_test] || "not set" %>
   </p>
@@ -32,21 +32,21 @@
   6. observe form control out of sync
 </pre>
 
+<%= form_with(url: test_path, method: :get, data: { turbo_action: :advance, turbo_frame: :radio_test, controller: "form" }) do |f| %>
+  <%= f.label "Radio 1", value: 1 %>
+  <%= f.radio_button :radio_test, 1, data: { action: "change->form#submit" }, checked: params[:radio_test] == "1" %>
+  <br>
+
+  <%= f.label "Radio 2", value: 2 %>
+  <%= f.radio_button :radio_test, 2, data: { action: "change->form#submit" }, checked: params[:radio_test] == "2" %>
+  <br>
+
+  <%= f.label "Radio 3", value: 3 %>
+  <%= f.radio_button :radio_test, 3, data: { action: "change->form#submit" }, checked: params[:radio_test] == "3" %>
+  <br>
+<% end %>
+
 <%= turbo_frame_tag :radio_test do %>
-  <%= form_with(url: test_path, method: :get, data: { turbo_action: :advance, turbo_frame: :radio_test, controller: "form" }) do |f| %>
-    <%= f.label "Radio 1", value: 1 %>
-    <%= f.radio_button :radio_test, 1, data: { action: "change->form#submit" }, checked: params[:radio_test] == "1" %>
-    <br>
-
-    <%= f.label "Radio 2", value: 2 %>
-    <%= f.radio_button :radio_test, 2, data: { action: "change->form#submit" }, checked: params[:radio_test] == "2" %>
-    <br>
-
-    <%= f.label "Radio 3", value: 3 %>
-    <%= f.radio_button :radio_test, 3, data: { action: "change->form#submit" }, checked: params[:radio_test] == "3" %>
-    <br>
-  <% end %>
-
   <p>
     Radio test is <%= params[:radio_test] || "not set" %>
   </p>
@@ -63,12 +63,12 @@
   6. observe form control IN SYNC
 </pre>
 
-<%= turbo_frame_tag :select_test do %>
-  <%= form_with(url: test_path, method: :get, data: { turbo_action: :advance, turbo_frame: :select_test, controller: "form" }) do |f| %>
-    <%= f.label :select_test %>
-    <%= f.select :select_test, options_for_select(10.times.map { |a| [a, a] }, params[:select_test]), {}, data: { action: "form#submit" } %>
-  <% end %>
+<%= form_with(url: test_path, method: :get, data: { turbo_frame: :select_test, turbo_action: :advance, turbo_frame: :select_test, controller: "form" }) do |f| %>
+  <%= f.label :select_test %>
+  <%= f.select :select_test, options_for_select(10.times.map { |a| [a, a] }, params[:select_test]), {}, data: { action: "form#submit" } %>
+<% end %>
 
+<%= turbo_frame_tag :select_test do %>
   <p>
     Select test is <%= params[:select_test] || "not set" %>
   </p>
